@@ -27,7 +27,6 @@ def GetAllPosts():
     result = c.fetchall()
     DB.close()
     posts = [{'content': str(row[0]), 'time': str(row[1])} for row in result]
-    # posts.sort(key=lambda row: row['time'], reverse=True)
     return posts
 
 ## Add a post to the database.
@@ -40,11 +39,9 @@ def AddPost(content):
     content = bleach.clean(str(content))
     DB = psy.connect("dbname=forum")
     c = DB.cursor()
-    # query = "insert into posts (content) values ('%s');" % content
-    # query = 
     c.execute("insert into posts (content) values (%s)", (content,))
+    DB.commit()
+    c.execute("update posts set content = 'cheese' where content like '%spam%';")
     DB.commit()
     DB.close()
     
-    # DB.append((t, content))
-    # return (content,t)
