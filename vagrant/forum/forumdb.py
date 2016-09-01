@@ -9,7 +9,6 @@ import bleach
 ## Database connection
 DB = psy.connect("dbname=forum")
 c = DB.cursor()
-c.execute()
 
 ## Get posts from database.
 def GetAllPosts():
@@ -41,7 +40,8 @@ def AddPost(content):
     c = DB.cursor()
     c.execute("insert into posts (content) values (%s)", (content,))
     DB.commit()
-    c.execute("update posts set content = 'cheese' where content like '%spam%';")
+    c.execute("delete from posts where content like '%cheese%';")
+    # c.execute("update posts set content = 'cheese' where content like '%spam%';")
     DB.commit()
     DB.close()
     
