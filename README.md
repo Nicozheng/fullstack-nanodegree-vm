@@ -1,4 +1,5 @@
-rdb-fullstack
+this folder store code for udacity class [intro to relational database] 
 =============
 
-Common code for the Relational Databases and Full Stack Fundamentals courses
+last changed in 2016 Sep 7th, by Nico.
+
